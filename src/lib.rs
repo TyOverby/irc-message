@@ -48,7 +48,8 @@ pub fn parse(line: &str) -> Result<IrcMessage, ()> {
             message.tags.insert(name, value);
         }
     }
-
+    let mut chars = chars.peekable();
+    if chars.is_empty() { return Err(()); }
     let mut chars = chars.skip_while(is_white).peekable();
 
     // Prefix
@@ -57,6 +58,8 @@ pub fn parse(line: &str) -> Result<IrcMessage, ()> {
         message.prefix = Some(prefix);
     }
 
+    let mut chars = chars.peekable();
+    if chars.is_empty() { return Err(()) }
     let mut chars = chars.skip_while(is_white);
 
     // Command
