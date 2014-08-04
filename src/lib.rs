@@ -1,5 +1,6 @@
 #![allow(dead_code)]
 use std::collections::hashmap::HashMap;
+use std::vec::MoveItems;
 
 #[cfg(test)]
 mod tests;
@@ -29,6 +30,11 @@ fn find_after_n(string: &str, c: char, n: uint) -> Option<uint> {
 fn is_white(c: &char) -> bool { *c == ' ' }
 fn not_white(c: &char) -> bool { !is_white(c) }
 
+fn strip<I: Iterator<char>>(iter: I) -> MoveItems<char> {
+    let vec: Vec<char> = iter.skip_while(is_white).collect();
+    vec.move_iter()
+}
+
 pub fn parse(line: &str) -> Result<IrcMessage, ()> {
     let mut message = IrcMessage::new_empty();
     let mut chars = line.chars().peekable();
@@ -50,7 +56,7 @@ pub fn parse(line: &str) -> Result<IrcMessage, ()> {
     }
     let mut chars = chars.peekable();
     if chars.is_empty() { return Err(()); }
-    let mut chars = chars.skip_while(is_white).peekable();
+    let mut chars = strip(chars).peekable();
 
     // Prefix
     if chars.peek() == Some(&':') {
@@ -60,13 +66,12 @@ pub fn parse(line: &str) -> Result<IrcMessage, ()> {
 
     let mut chars = chars.peekable();
     if chars.is_empty() { return Err(()) }
-    let mut chars = chars.skip_while(is_white);
+    let mut chars = strip(chars);
 
     // Command
     let command = chars.by_ref().take_while(not_white).collect();
     message.command = Some(command);
-
-    let mut chars = chars.skip_while(is_white);
+    let mut chars = strip(chars);
 
     // Params
     loop {
