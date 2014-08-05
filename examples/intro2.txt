@@ -1,0 +1,85 @@
+:sendak.freenode.net NOTICE * :*** Looking up your hostname...
+:sendak.freenode.net NOTICE * :*** Checking Ident
+:sendak.freenode.net NOTICE * :*** Couldn't look up your hostname
+:sendak.freenode.net NOTICE * :*** No Ident response
+:sendak.freenode.net 001 tybot2 :Welcome to the freenode Internet Relay Chat Network tybot2
+:sendak.freenode.net 002 tybot2 :Your host is sendak.freenode.net[193.219.128.49/6667], running version ircd-seven-1.1.3
+:sendak.freenode.net 003 tybot2 :This server was created Tue Apr 8 2014 at 17:59:15 EEST
+:sendak.freenode.net 004 tybot2 sendak.freenode.net ircd-seven-1.1.3 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+:sendak.freenode.net 005 tybot2 CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode KNOCK STATUSMSG=@+ CALLERID=g :are supported by this server
+:sendak.freenode.net 005 tybot2 CASEMAPPING=rfc1459 CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 ETRACE CPRIVMSG CNOTICE DEAF=D MONITOR=100 FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: :are supported by this server
+:sendak.freenode.net 005 tybot2 EXTBAN=$,ajrxz WHOX CLIENTVER=3.0 SAFELIST ELIST=CTU :are supported by this server
+:sendak.freenode.net 251 tybot2 :There are 171 users and 83001 invisible on 29 servers
+:sendak.freenode.net 252 tybot2 29 :IRC Operators online
+:sendak.freenode.net 253 tybot2 12 :unknown connection(s)
+:sendak.freenode.net 254 tybot2 50408 :channels formed
+:sendak.freenode.net 255 tybot2 :I have 8124 clients and 1 servers
+:sendak.freenode.net 265 tybot2 8124 9445 :Current local users 8124, max 9445
+:sendak.freenode.net 266 tybot2 83172 97246 :Current global users 83172, max 97246
+:sendak.freenode.net 250 tybot2 :Highest connection count: 9446 (9445 clients) (439359 connections received)
+:sendak.freenode.net 375 tybot2 :- sendak.freenode.net Message of the Day - 
+:sendak.freenode.net 372 tybot2 :- Welcome to sendak.freenode.net in Vilnius, Lithuania, EU.
+:sendak.freenode.net 372 tybot2 :- Thanks to Microlink Lietuva (http://www.microlink.lt) for providing this
+:sendak.freenode.net 372 tybot2 :- server!
+:sendak.freenode.net 372 tybot2 :-  
+:sendak.freenode.net 372 tybot2 :- SENDAK, MAURICE [1928-2012].  The author of Seven Little
+:sendak.freenode.net 372 tybot2 :- Monsters and Where the Wild Things Are, Maurice Sendak was
+:sendak.freenode.net 372 tybot2 :- born in Brooklyn, NY, US, to a family of poor Polish
+:sendak.freenode.net 372 tybot2 :- immigrants who moved to the US before World War II.  He
+:sendak.freenode.net 372 tybot2 :- became an illustrator while in high school.
+:sendak.freenode.net 372 tybot2 :-  
+:sendak.freenode.net 372 tybot2 :- Welcome to freenode - supporting the free and open source
+:sendak.freenode.net 372 tybot2 :- software communities since 1998.
+:sendak.freenode.net 372 tybot2 :-  
+:sendak.freenode.net 372 tybot2 :- By connecting to freenode you indicate that you have read and
+:sendak.freenode.net 372 tybot2 :- accept our policies as set out on http://www.freenode.net
+:sendak.freenode.net 372 tybot2 :- freenode runs an open proxy scanner. Please join #freenode for
+:sendak.freenode.net 372 tybot2 :- any network-related questions or queries, where a number of
+:sendak.freenode.net 372 tybot2 :- volunteer staff and helpful users will be happy to assist you.
+:sendak.freenode.net 372 tybot2 :-  
+:sendak.freenode.net 372 tybot2 :- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+:sendak.freenode.net 372 tybot2 :- together with like-minded FOSS enthusiasts for talks and
+:sendak.freenode.net 372 tybot2 :- real-life collaboration.
+:sendak.freenode.net 372 tybot2 :-  
+:sendak.freenode.net 372 tybot2 :- We would like to thank Private Internet Access
+:sendak.freenode.net 372 tybot2 :- (https://www.privateinternetaccess.com/) and the other
+:sendak.freenode.net 372 tybot2 :- organisations that help keep freenode and our other projects
+:sendak.freenode.net 372 tybot2 :- running for their sustained support.
+:sendak.freenode.net 372 tybot2 :-  
+:sendak.freenode.net 372 tybot2 :- In particular we would like to thank the sponsor
+:sendak.freenode.net 372 tybot2 :- of this server, details of which can be found above.
+:sendak.freenode.net 372 tybot2 :-  
+:sendak.freenode.net 372 tybot2 :- ***************************************************************
+:sendak.freenode.net 372 tybot2 :- Please read http://blog.freenode.net/2010/11/be-safe-out-there/
+:sendak.freenode.net 372 tybot2 :- ***************************************************************
+:sendak.freenode.net 376 tybot2 :End of /MOTD command.
+:tybot2 MODE tybot2 :+i
+:tybot2!~tybot2@24.16.208.42 JOIN #clojure
+:sendak.freenode.net 332 tybot2 #clojure :Clojure, the language http://clojure.org | Currently at 1.6.0; top analysts expect this to be followed by newer versions with still higher numbers: https://github.com/clojure/clojure/blob/master/changes.md | discussion: http://groups.google.com/group/clojure
+:sendak.freenode.net 333 tybot2 #clojure technomancy!~user@ec2-54-244-178-65.us-west-2.compute.amazonaws.com 1395851595
+:sendak.freenode.net 353 tybot2 = #clojure :tybot2 yotsov smkw michaelr` jballanc jonasen jinks_ jasonjckn mpenet jdkealy jjido coldnew nobodyzzz fergalbyrne Tuna-Fish sghai_ arthuredelstein dalzony ananthakumaran dark_element john2x_ samrat kenneth johann daito_ dee5 ambrosebs tim_gluz _kardan maveneagle forgottenone kahl cydork juliobarros dbasch kelseygi tuft banjara kaiwren hipitihop dilzio swgillespie mkcp ppppaul ddellacosta zematis elasticdog amatsu davejacobs ThePhoeron jchochli
+:sendak.freenode.net 353 tybot2 = #clojure :bobbycalderwood jjwatt` toretore jergason l2x asteve vili _99hats_Zzz whoawhat11111 morganastra abaranosky lordB8r Sgeo_ Jameser rurumate_ Guest17044 zaphar_ps kephale nhll poli arohner robustus mgaare Javran meandi_ ka2u zeebrah acagle1 stardiviner jarm hlship SegFaultAX wizzo truemped_ ifesdjeen blrm dene14 aperiodic abeaumont_ janispau_ michaelneale troydm necronian Nahra Desheng sxn kristof Sauvin tadni ndrei OlegYch7 dowwie vendethiel silven jave
+:sendak.freenode.net 353 tybot2 = #clojure :audaxion gws Alina-malina lazybot bobwilliams justinmcp aspotashev_ amalloy anildigital mynomoto miber mocker fikusz zeitue ToBeReplaced justin_smith OscarZ AimHere _Vi Edsfnnnnmlop3 gozala kbaribeau telex cprice404 rplaca eevar noncom willgorman_ lvh sw1nn ndaly chrisrossi _alejandro mimieux Thorn pydave6367 ephemeron Mikalv tomhs scape_ gill_ ivan\ Foxboron danlarkin willb__ varioust owengalenjones synfinatic ticking jcrossley3-away erickedji babilen
+:sendak.freenode.net 353 tybot2 = #clojure :TristamWrk deadghost josteink insamniac eigenlicht cmarques sneeu tcrawley-away karls alandipert_ hipsterslapfigh| Guest42918 jkj engblom` expez- ngk_ pfeyz_ geoffeg shadower rowth oetjenj maio AndChat|85241 acagle nighty^ actionshrimp mr-foobar razi trancaruas codeburg Pupnik chavezgu prc1 jml yacks mrBliss alejandro catern meingbg zby Okasu grim_radical groot lancepantz rksm ryanf yogthos ibdknox PigDude metellus bigkevmcd m_m14 twem2 deevus razum2um lpvb
+:sendak.freenode.net 353 tybot2 = #clojure :haroldwu _trev peeja scottj emacsnw_ frkout timvisher conan safety Natch TDJACR nikolap martin_ samflores Revenrof MacCoaster scopedTV sea-gull qz luxbock d0c0nnor rweir majoh tekacs jlouis lobotomy JStoker torgeir igorw ered cYmen Duke- rovar__ xeqi jimrthy dan kushal Cr8 applet soncodi jimt Derander robink edlothiol anekos_ alexbaranosky septomin Raynes akhudek_ malyn__ erdic kenrestivo Chasm zenojis ari` lagging_troll thheller dhruvasagar pjstadig fmu
+:sendak.freenode.net 353 tybot2 = #clojure :edw p_l cobakobodob saiam zenoli htmzr peted_ rtlong gignosko jaimef Excureo oyvinrob cespare hugod ltw wunki Blkt tape_one rblackwe StianE Xe paulweb515 CaveJohnson ruzu mtd ChrisOei dyreshark raoul_ rs0 tomku hakvroot grncdr kraft matt_c WildBamboo-Josh Uatec_ TakeV TheMoonMaster jconnoll1 turbofail Mongey solvip MediumDivision {blake} ohpauleez Kruppe vpm j0ni akurilin skrblr mirf ontoillogical ggreer MrGwen yacin n_b magopian akl yason Deraen bracki
+:sendak.freenode.net 353 tybot2 = #clojure :nickmbailey jamiei farhaven kerneis_ dima___ bbloom_ arrubin rbarraud` oubiwann dakrone Intensity Tristam uris77 kitallis keen____ awwaiid shoky matthavener ninjudd lfranchi ahoenigmann rlb sabernethy seubert martintrojer Jaood pcn rberdeen ndp aaroncm dudleyf choas jetlag ucb rotty mrowe mattrepl machuga Hodapp reeses luigy teejar ClarusCogitatio the-kenny jayne karbak___ misv_ zoldar JDShu chouser_1og numberten Binkiepi1 canassa waf ebzzry_ moshR
+:sendak.freenode.net 353 tybot2 = #clojure :zakwilson bitpimp bencryption amano-- supershabam dsantiago _ato effy brainproxy alloyed whaley jumblemuddle pashields FMJaggy tsantero bra brackets Ragnor rkneufeld alindeman wormphlegm utkarsh_ arrdem ipostelnik bchar ikitommi_ CookedGryphon brixen gyim boodle jeregrine wanghuskahn priya_ acanete ssutch Shambles_ nwjsmith_ Scorchin pmbauer yourabi_ bsansouci_ spicyj danlucraft____ yumike superjudge__ avdi gluegadget michaniskin merlinsbrain jzelinskie
+:sendak.freenode.net 353 tybot2 = #clojure :cannedprimates yeshuah bjeanes nhanH matko nifty bruceadams metadaddy|vacati mpereira_ miaoski universemonger jonathanj Morgawr ivan ivan` ben_vulpes xpika boltR dsrx jcsims ssedano xarquid certainty relgar octagon kaw_ slpsys nseger Mendor|scr pavlicek beppu dabradley clojurebot nicholasf phuu rattboi LoRdToLsJ Glenjamin serjeem jdag honza crazysim ekroon itruslove_away Viesti_ raek mccraig terom jlyndon eagleflo_ amontalenti dzimm ohcibi omarkj Adr1 gko
+:sendak.freenode.net 353 tybot2 = #clojure :llasram yazirian sethalves zymurgy sordina2 verma hyPiRion wjlroe anon-2752 janne l3dx brand0 mdallastella hiredman TimMc r4vi mbac simuran daemian wolfcore_ zz_jrhorn424 icedp neektza lopex vilmibm kikkerbrood Shayanjm dcolish terjesb strmpnk gfredericks beawesomeinstead lenstr lokydor codelahoma Luyt__ AWizzArd averell TEttinger2 gridaphobe hhenkel jmolet H4ns yocapybara s_e ieure chriswk zanes Fitzsimmons daekano technomancy zerokarmaleft coffeejunk hash
+:sendak.freenode.net 353 tybot2 = #clojure :redinger arbscht hsalokor kungi nathan7 jtoy jamespw noidi tephra audax333 hoverbear enn kmicu opqdonut srcerer ahihi whee zling_ brianwong alxlit Licenser jlewis_ rufoa rtl bounb sorenmacbeth ktsuji Orva radix pyrtsa algernon madscientist` greenznc gregburd dselph___ JSON_voorhees Klaufir_ tobyp l1x [Neurotic] LukeWinikates___ ToxicFrog tmarble aka Adeon cross boyscared rjknight Xorlev Chousuke cursork jgmize malyn kandinski devn apetresc eggsby
+:sendak.freenode.net 353 tybot2 = #clojure :honkfestival mp Mandus broquaint jarpiain zaiste schwap heath kylo karupa seanaway felipe` Bird|otherbox jlewis SHODAN shep-home kreg djjolicoeur pepijndevos @ChanServ tomaw f3ew dogonthehorizon Kneiva thorstadt dvojrozec dean osnr tpope right1 demolithion LBRapid jlpeters augustl halorgium msassak joegallo hyperboreean lotia neena Ethcelon DerGuteMoritz billyiii fuziontech_____ kristian- perplexa _1126 scgilardi tbatchelli jodaro_ zph lyddonb_ stain_
+:sendak.freenode.net 353 tybot2 = #clojure :Raynos korpse_______ gf3 saolsen ikitommi thecontrarian mlb- MooGoo hq1 AeroNotix danneu ggherdov jeremyheiler ipolyzos JonMR mariorz ozzloy pgmcgee reiddraper leptonix octane- rasmusto feltnerm_ saurik adammh arkh grandy elsen jabbslad__ rigalo__ mcav___ lijnen hlprmnky jagtalon mekaj patrickod greghendershott riotonthebay_ Robdor zpconn_________ andrewstewart owenb___ mrb_bk oskarth tomobrien leifw magnars whodidthis cky koalallama dkua dhkl locks si14
+:sendak.freenode.net 353 tybot2 = #clojure :klobucar__ gccv Bodil rippy voldyman dioms_ guilleiguaran__ cojennin__ asabil charliekilo cantsin moquist lhz Jahkeup Klumben shwouchk pradeepc wink wkelly spjt m_3 ChongLi katratxo gideonite knyppeldynan rlr kyrre
+:sendak.freenode.net 366 tybot2 #clojure :End of /NAMES list.
+:zot!~Adium@095-097-072-172.static.chello.nl JOIN #clojure
+:zot!~Adium@095-097-072-172.static.chello.nl QUIT :Client Quit
+:lordB8r!~lordB8r@205-178-101-237.c3-0.stk-ubr1.chi-stk.il.cable.rcn.com QUIT :Remote host closed the connection
+:yazirian!~user@ec2-107-22-12-251.compute-1.amazonaws.com QUIT :Remote host closed the connection
+:kstrempel!~Adium@h-213.61.228.26.host.de.colt.net JOIN #clojure
+:kerneis_!~gabriel@wanbli.kerneis.info NICK :kerneis
+:michaelr`!~user@82.102.141.207 PRIVMSG #clojure :Jaood: 9 am
+:kschrader!~kschrader@pool-96-246-39-34.nycmny.fios.verizon.net JOIN #clojure
+PING :sendak.freenode.net
+:tuft!~tuft@c-50-181-162-42.hsd1.wa.comcast.net QUIT :Ping timeout: 255 seconds
+:tbaldridge!~tim@67-6-194-135.hlrn.qwest.net JOIN #clojure

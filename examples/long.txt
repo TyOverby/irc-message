@@ -1,0 +1,89 @@
+:concrete.mozilla.org NOTICE AUTH :*** Looking up your hostname...
+:concrete.mozilla.org NOTICE AUTH :*** Couldn't resolve your hostname; using your IP address instead
+PING :DB85A657
+:concrete.mozilla.org 001 tybot :Welcome to the Mozilla IRC Network tybot!ty_bot@24.16.208.42
+:concrete.mozilla.org 002 tybot :Your host is concrete.mozilla.org, running version Unreal3.2.8
+:concrete.mozilla.org 003 tybot :This server was created Tue Mar 24 2009 at 19:56:50 PDT
+:concrete.mozilla.org 004 tybot concrete.mozilla.org Unreal3.2.8 iowghraAsORTVSxNCWqBzvdHtGp lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGj
+:concrete.mozilla.org 005 tybot CMDS=KNOCK,MAP,DCCALLOW,USERIP UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=100 CHANLIMIT=#:100 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:concrete.mozilla.org 005 tybot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(ohv)@%+ CHANMODES=beIqa,kfL,lj,psmntirRcOAQKVCuzNSMTG NETWORK=Mozilla CASEMAPPING=ascii EXTBAN=~,cqnr ELIST=MNUCT :are supported by this server
+:concrete.mozilla.org 005 tybot STATUSMSG=@%+ EXCEPTS INVEX :are supported by this server
+:concrete.mozilla.org 251 tybot :There are 20 users and 2834 invisible on 2 servers
+:concrete.mozilla.org 252 tybot 22 :operator(s) online
+:concrete.mozilla.org 254 tybot 1126 :channels formed
+:concrete.mozilla.org 255 tybot :I have 2844 clients and 1 servers
+:concrete.mozilla.org 265 tybot :Current Local Users: 2844  Max: 3504
+:concrete.mozilla.org 266 tybot :Current Global Users: 2854  Max: 3831
+:concrete.mozilla.org 375 tybot :- concrete.mozilla.org Message of the Day - 
+:concrete.mozilla.org 372 tybot :- 13/2/2013 22:16
+:concrete.mozilla.org 372 tybot :- ____________________________________________________________________
+:concrete.mozilla.org 372 tybot :-           |          |  _        |      :    |           |
+:concrete.mozilla.org 372 tybot :-  __ ___ _ _  __ _ _ ___| |_ ___  |      ,    |           |
+:concrete.mozilla.org 372 tybot :- / _/ _ \ ' \/ _| '_/ -_)  _/ -_) |      ,'   |           |
+:concrete.mozilla.org 372 tybot :- \__\___/_||_\__|_| \___|\__\___| |    ,'     |           |
+:concrete.mozilla.org 372 tybot :-           |          |           |    :      |           |
+:concrete.mozilla.org 372 tybot :- __________|__________|___________|___________|___________|__________ 
+:concrete.mozilla.org 372 tybot :-                  M O Z I L L A   D O T   O R G
+:concrete.mozilla.org 372 tybot :-                     http://www.mozilla.org/
+:concrete.mozilla.org 372 tybot :- 
+:concrete.mozilla.org 372 tybot :- =================================================================
+:concrete.mozilla.org 372 tybot :-  This server is for use by Mozilla developers, testers, and
+:concrete.mozilla.org 372 tybot :-  users. If you are not one, please find another server.
+:concrete.mozilla.org 372 tybot :- 
+:concrete.mozilla.org 372 tybot :-  NOTICE: Your IP address will be portscanned by our open
+:concrete.mozilla.org 372 tybot :-  proxy tester.  See http://irc.mozilla.org/ for details.
+:concrete.mozilla.org 372 tybot :- 
+:concrete.mozilla.org 372 tybot :- =================================================================
+:concrete.mozilla.org 372 tybot :- Project information:
+:concrete.mozilla.org 372 tybot :-  Firefox                #firefox     http://support.mozilla.org
+:concrete.mozilla.org 372 tybot :-  Mobile                 #mobile      http://support.mozilla.org/mobile
+:concrete.mozilla.org 372 tybot :-  Thunderbird            #thunderbird http://support.mozillamessaging.com
+:concrete.mozilla.org 372 tybot :-  Boot2Gecko (FirefoxOS) #b2g         https://www.mozilla.org/firefoxos/
+:concrete.mozilla.org 372 tybot :- 
+:concrete.mozilla.org 372 tybot :- Help for new contributors:
+:concrete.mozilla.org 372 tybot :-    #introduction     http://developer.mozilla.org/En/Introduction
+:concrete.mozilla.org 372 tybot :- =================================================================
+:concrete.mozilla.org 372 tybot :- 
+:concrete.mozilla.org 372 tybot :-  For a list of other helpful channels please visit
+:concrete.mozilla.org 372 tybot :-  http://irc.mozilla.org/ or use the /list command.
+:concrete.mozilla.org 372 tybot :-  Additional help with IRC at http://www.irchelp.org/
+:concrete.mozilla.org 376 tybot :End of /MOTD command.
+:tybot MODE tybot :+ix
+:tybot!ty_bot@8080CCE1.339F5DB7.7E943E5C.IP JOIN :#rust
+:concrete.mozilla.org 332 tybot #rust :The Rust language | logs: https://botbot.me/mozilla/rust | conduct: https://github.com/mozilla/rust/wiki/Note-development-policy#conduct | package integration: http://rust-ci.org/ | 1.0 issues: bit.ly/1dM8ii2 | if room is moderated, register with nickserv to talk
+:concrete.mozilla.org 333 tybot #rust huon 1394018893
+:concrete.mozilla.org 353 tybot @ #rust :tybot eibwen tetsuharu phay zebr jesse99 Liam` tmnt alonlevy jadbox p1start moa LRN ty_ ahunt acharles njn squiddy googya Tuna-Fish Sunng nyx mkoskar daschl sk SneakySnake hacker_sam csherratt krebbit eddyb_ nkoep fyolnish eddyb sw17ch brianpWins Retep998 rail44 BageDevimo kgrandon TheHydroImpulse koderok @lkuper PudgePacket Doppp robn aturon Kingsqueee zaach brandonson swgillespie mkcp mceier summerlight keras 
+:concrete.mozilla.org 353 tybot @ #rust :Houm Sharp zz_kimundi shakesoda Asandari goffrie sam113101 tmh_ Gamecubic th0ma5_ nham Ralith kanru surd reem funnel onelson pobody Kxepal RacquetBall m_kato e_dub diverse robarnold AncientPC bytbox james4k grundligt Sonarpulse bgamari btipling pyon happy_hippo ebfull Jesin keeperofdakeys tinaun yjerem ChrisMorgan mekius Fill Sgeo Boscop kentuckyfriedtakahe Astrum|z josh vadimcn jdlong excarna cb22 Axord nightpool 
+:concrete.mozilla.org 353 tybot @ #rust :ballard26 mmalecki Ablu silven tgummerer Liquid_Fire pauluu derek-g mib_24pwdx gozala thesnowdog marshall_law smarter devbug andrezs jj2baile gpm shadeslayer ville timbermaniac Leo` saml brandonw arrrrrrrrr tav cers Yurumechan untitaker mindtree luzie sspi Amaranth Aaron1011 CodesInChaos Dr-Emann fairfieldt bug vikraman jga noam Benny1992 Romster cdidd taldrain Dtgr ebalint johnsoft klaus rcxdude WalrusPony 
+:concrete.mozilla.org 353 tybot @ #rust :GregorR copumpkin lerc datalus dalarmmst olsner kahrl HappyMan popow Diamond qlkzy Zor XgF raze FreeFull cciivv flugsio numerodix mrmonday blank_name rovar veddan se jmorton det SomeoneWeird yuriks pzol EarlGray klutzy youknowone Yurume Zoxc lacrosse jyyou mcpherrin StolenToast mrkishi libfud jld achin Gliptic morganb apoelstra mythmon xales Bowel o11c zimbatm bjeanes cstrahan mbrubeck balpert_ ato bfoster 
+:concrete.mozilla.org 353 tybot @ #rust :zacts strtok vincom2 wc comex kashif janx dkua lenary mno2 GameGamer43 unwound Soft Blub\w burntsushi sinclair fhahn rustilite ChrisOei lightsofapollo|mtv dormiens Ycros sam dg g5pw Boreeas Eridius Lovot eternaleye sprang Excureo ra4king azakai leod alphonse23 yusukesuzuki trustin gluegadget LQDHelium Cork nchapman delqn Eeems msch sawrubh wycats ircmaxell sid0 mhenretty calvinmetcalf drueck wavis locks jryans 
+:concrete.mozilla.org 353 tybot @ #rust :gregburd @jack samth ty nfroidure devyn award teratorn @huon hays nowhere_man @nmatsakis alarmbot yota matp zzz stack piisalie ion alofgren KindOne scythe skelly JacobHenner myname gbarboza stvc steveklabnik reyre akawaka johns grover ksonny indirect zkat rryan tca sodaplayer stevedomin [o__o] jroesch fiyarburst henrikhodne not_gavin demize brett_h c74d rhelmer passcod Sleaker ewdafa mrob santiago thiagopnts 
+:concrete.mozilla.org 353 tybot @ #rust :indiv0 korishev ndt evocatus rezrov binarybitme noct km wting mme Rusky jyxent KokaKiwi huhlig avdi franckverrot darkf Manishearth eevee steshaw jzelinskie vegai robertknight_ic kmrhb rdgawdzi edk otterdam Crandom h3r3tic rweir tmh TimAbraldes db48x florentia Reisen bitbckt wunki Thiez Cryovat jxs mixi hansjorg Khady paulproteus apes dLog Philip reid trink Siosm HansiHE mhoye mvian apanek mk270 zmike ggherdov_ 
+:concrete.mozilla.org 353 tybot @ #rust :Rufflewind curlywur1y ivan` ivan cmn dsrx Kroisse_ sfackler dforsyth spernsteiner crazysim jasonrm sarlalian bascule musicalchair XMPPwocky TD-Linux pauljt JustAPerson ytti Adr1 wilkie TeXitoi decoder dw @cmr wei2912 rs0 canndrew wtw prudhvi FlyingFoX hirschen pcdummy pigoz benny wxcafe ryankarason flowsnake ParahSailin halosghost rusti jesse98 joone \g Dessimat0r Rubennn Erik shadower Amanieu @kmc Soarez|afk 
+:concrete.mozilla.org 353 tybot @ #rust :flaper87 geal CarpNet TobiasFar mitsuhiko ruzu dpanth3r kini pepijndevos zw01 _z joelteon kwantam relrod Sycamore dcrewi Seldaek froydnj daimrod Taneb Seich circ-user-8BNac hoverbear jhelwig akahuh Aria reccan petantik jhark jeaye mattyohe reed zoink absalon dherman simme raytiley nox bgyss gsnedders akhosrav dpc wilsonk-xserve nicoo matricks calp pcmattman Drup escalant3 hbar cantsin pingveno ek renopt dymk 
+:concrete.mozilla.org 353 tybot @ #rust :numberten jalcine benh Luqman jmbto pauls eagleflo @bstrie alinab Tari bblum _1126 doy katis kluge lahwran cyndis kemurphy carter zekesonxx lfox sindork retornam veeti Ke ekiara dbussink andrew-d qmx toddaaro ross aphistic kuuranne mcsu cajbir jamwt seanmonstar quasisphere bbrittain carols10cents drz zen|merge jgraichen rlr Cathy kmapped sam_giles freakazoid brendanc paulnispel glandium luisbg darnuria andor 
+:concrete.mozilla.org 353 tybot @ #rust :kaeso Siyo GrecKo companion_cube k4nar Yoric AutomatedTester zwarich gavin jgmize jweinberg dju rschulman masonl shachaf mattyb fmtq koomi pcn araujo Mutabah thorncp chandler phaylon Derecho grncdr sellout kalenedrael toshok sully felixc Peng SimonSapin tiffany dopin @acrichto 
+:concrete.mozilla.org 366 tybot #rust :End of /NAMES list.
+PING :concrete.mozilla.org
+:apoelstra!username@moz-B7040E82.vs.shawcable.net PRIVMSG #rust :BageDevimo: do you have a specific error message from that impl?
+PING :concrete.mozilla.org
+:BageDevimo!BageDevimo@1C033309.729EC5FD.67CC77FD.IP PRIVMSG #rust :apoelstra: https://gist.github.com/bagedevimo/5a732e51745db202fa12
+:eddyb!eddyb@CD8BECF9.66315F97.FB866788.IP QUIT :Client exited
+:bleibig!brianleibi@moz-B4D9C5AF.hsd1.ca.comcast.net JOIN :#rust
+PING :concrete.mozilla.org
+PING :concrete.mozilla.org
+:apoelstra!username@moz-B7040E82.vs.shawcable.net PRIVMSG #rust :BageDevimo: ok, i'd make the parameters 'a on lines 10 and 24 have different names, and i'd make the return type of CollidingChildren have explicit lifetime parameters
+:apoelstra!username@moz-B7040E82.vs.shawcable.net PRIVMSG #rust :because i can't tell which 'a is being referred to in the compiler message
+PING :concrete.mozilla.org
+:eddyb_!eddy@CD8BECF9.66315F97.FB866788.IP PRIVMSG #rust :tybot: look at the topic
+PING :concrete.mozilla.org
+:PudgePacket!PudgePacke@moz-CB80EA59.static.tpgi.com.au PRIVMSG #rust :logs: https://botbot.me/mozilla/rust 
+:apoelstra!username@moz-B7040E82.vs.shawcable.net PRIVMSG #rust :tybot: you can type /topic
+:concrete.mozilla.org 461 tybot TOPIC :Not enough parameters
+:curlywur1y!craig@moz-4C6E6525.xen.tardis.ed.ac.uk QUIT :Ping timeout
+:concrete.mozilla.org 332 tybot #rust :The Rust language | logs: https://botbot.me/mozilla/rust | conduct: https://github.com/mozilla/rust/wiki/Note-development-policy#conduct | package integration: http://rust-ci.org/ | 1.0 issues: bit.ly/1dM8ii2 | if room is moderated, register with nickserv to talk
+:concrete.mozilla.org 333 tybot #rust huon 1394018893
+:apoelstra!username@moz-B7040E82.vs.shawcable.net PRIVMSG #rust ::P
+:BageDevimo!BageDevimo@1C033309.729EC5FD.67CC77FD.IP PRIVMSG #rust :apoelstra: https://gist.github.com/bagedevimo/455b08ced43b2a270c1d
+PING :concrete.mozilla.org
+:apoelstra!username@moz-B7040E82.vs.shawcable.net PRIVMSG #rust :BageDevimo: ah, now it makes more sense, the problem is that 'cc parameterizes the function so it can be pretty-much anything

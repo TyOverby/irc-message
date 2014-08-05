@@ -136,3 +136,30 @@ fn tags_prefix_command_middle_params_trailiing_params() {
                     Slice("quux"),
                     Slice("This is a test")]);
 }
+
+#[cfg(test)]
+fn parse_file(filepath: &str) {
+    use std::io::fs::File;
+    use std::io::BufferedReader;
+    let file = File::open(&Path::new(filepath)).unwrap();
+    let mut file = BufferedReader::new(file);
+    for line in file.lines() {
+        let line = line.unwrap();
+        assert!(IrcMessage::parse_slice(line.as_slice()).is_ok());
+    }
+}
+
+#[test]
+fn read_intro_logs_1() {
+    parse_file("./examples/intro.txt");
+}
+
+#[test]
+fn read_intro_logs_2() {
+    parse_file("./examples/intro2.txt");
+}
+
+#[test]
+fn read_long_logs_1() {
+    parse_file("./examples/long.txt");
+}
