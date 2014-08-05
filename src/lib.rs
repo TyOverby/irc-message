@@ -1,19 +1,22 @@
 #![allow(dead_code)]
+#![feature(macro_rules)]
 use std::collections::hashmap::HashMap;
-use std::vec::MoveItems;
+use std::str::MaybeOwned;
+use std::str::Owned;
+use std::str::Slice;
 
 #[cfg(test)]
 mod tests;
 
-pub struct IrcMessage {
-    pub tags: HashMap<String, String>,
-    pub prefix: Option<String>,
-    pub command: Option<String>,
-    pub params: Vec<String>
+pub struct IrcMessage<'a> {
+    pub tags: HashMap<MaybeOwned<'a>, MaybeOwned<'a>>,
+    pub prefix: Option<MaybeOwned<'a>>,
+    pub command: Option<MaybeOwned<'a>>,
+    pub params: Vec<MaybeOwned<'a>>
 }
 
-impl IrcMessage {
-    pub fn new_empty() -> IrcMessage {
+impl <'b> IrcMessage<'b> {
+    pub fn new_empty<'a>() -> IrcMessage<'a> {
         IrcMessage {
             tags: HashMap::new(),
             prefix: None,
@@ -23,78 +26,103 @@ impl IrcMessage {
     }
 }
 
-fn find_after_n(string: &str, c: char, n: uint) -> Option<uint> {
-    string.slice_from(n).find(c).map(|a| a + n)
+fn next_segment<'a>(line: &'a str) -> (&'a str, &'a str) {
+    match line.find(' ') {
+        Some(n) => {
+            if line.len() == 0 {
+                return (line, line);
+            }
+            let segment = line.slice_to(n);
+
+            let mut p = n;
+
+            while line.char_at(p) == ' ' && p < line.len() - 1 {
+                p += 1;
+            }
+
+            (segment, line.slice_from(p))
+        },
+        None => (line, "")
+    }
 }
 
-fn is_white(c: &char) -> bool { *c == ' ' }
-fn not_white(c: &char) -> bool { !is_white(c) }
+fn trim_space<'a>(line: &'a str) -> &'a str {
+    if line.len() == 0 {
+        return line;
+    }
 
-// Strips whitespace off an iterator.  It also recollects the
-// characters in order to keep rustc from blowing itself up.
-// github.com/rust-lang/rust/issues/16232
-fn strip<I: Iterator<char>>(iter: I) -> MoveItems<char> {
-    let vec: Vec<char> = iter.skip_while(is_white).collect();
-    vec.move_iter()
+    let mut p = 0;
+    while line.char_at(p) == ' ' && p < line.len() - 1 {
+        p += 1;
+    }
+
+    line.slice_from(p)
 }
 
-pub fn parse(line: &str) -> Result<IrcMessage, ()> {
+pub fn parse_owned<'a>(line: &'a str) -> Result<IrcMessage<'static>, ()> {
+    parse_into(line, |a| Owned(a.to_string()))
+}
+
+pub fn parse_slice<'a>(line: &'a str) -> Result<IrcMessage<'a>, ()> {
+    parse_into(line, Slice)
+}
+
+pub fn parse_into<'a, 'b>(line: &'a str, wrap: |a: &'a str| -> MaybeOwned<'b>) -> Result<IrcMessage<'b>, ()> {
     let mut message = IrcMessage::new_empty();
-    let mut chars = line.chars().peekable();
-    // Tags
-    if chars.peek() == Some(&'@') {
-        // Tags are from the @ to the first space character.
-        let mut tags = chars.by_ref().skip(1).take_while(not_white);
-        loop {
-            // Tags are seperated by semicolons
-            let mut tag = tags.by_ref().take_while(|&c| c != ';').peekable();
-            if tag.peek() == None { break; }
-            // A tag might have a '=' seperating key and value pairs
-            let name = tag.by_ref().take_while(|&c| c != '=').collect();
-            let mut rest = tag.peekable();
-            let value = if rest.is_empty() {
-                // True is the default value if one is not provided.
-                "true".to_string()
+
+    // TAGS
+    let line = if line.char_at(0) == '@' {
+        let (tags, rest) = next_segment(line.slice_from(1));
+        let mut rawTags = tags.split(';');
+        for tag in rawTags {
+            println!("{}", tag);
+            if tag.contains_char('=') {
+                let mut pair = tag.split('=');
+                message.tags.insert(wrap(pair.next().unwrap()), wrap(pair.next().unwrap()));
             } else {
-                rest.collect()
-            };
-            message.tags.insert(name, value);
+                message.tags.insert(wrap(tag), wrap("true"));
+            }
         }
-    }
+        rest
+    } else {
+        line
+    };
 
-    // An empty iterator at this point is a parsing failure
-    let mut chars = strip(chars).peekable();
-    if chars.is_empty() { return Err(()); }
+    // PREFIX
+    let line = if line.char_at(0) == ':' {
+        let (prefix, rest) = next_segment(line.slice_from(1));
+        message.prefix = Some(wrap(prefix));
+        rest
+    } else {
+        line
+    };
 
-    // Prefix
-    if chars.peek() == Some(&':') {
-        let prefix = chars.by_ref().skip(1).take_while(not_white).collect();
-        message.prefix = Some(prefix);
-    }
+    // COMMAND
+    let (command, line) = next_segment(line);
+    message.command = Some(wrap(command));
 
-    let mut chars = strip(chars).peekable();
-    if chars.is_empty() { return Err(()) }
 
-    // Command
-    let command = chars.by_ref().take_while(not_white).collect();
-    message.command = Some(command);
-    let mut chars = strip(chars).peekable();
-
-    // Params
-    loop {
-        match chars.peek() {
-            None => { break; }
-            Some(&':') => {
-                // The rest of the string
-                message.params.push(chars.skip(1).collect());
+    // PARAMS
+    let mut rest = trim_space(line);
+    while !rest.is_empty() {
+        match next_segment(rest) {
+            ("", _) => {
                 break;
             }
-            _ => {
-                message.params.push(chars.by_ref().take_while(not_white).collect());
-                chars = strip(chars).peekable();
+            (_, _) if rest.char_at(0) == ':' => {
+                message.params.push(wrap(rest.slice_from(1)));
+                break;
+            }
+            (last, "") => {
+                message.params.push(wrap(last));
+                break;
+            }
+            (next, tail) => {
+                message.params.push(wrap(next));
+                rest = tail;
             }
         }
     }
 
-    Ok(message)
+    return Ok(message);
 }
