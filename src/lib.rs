@@ -8,6 +8,7 @@ use std::str::Slice;
 #[cfg(test)]
 mod tests;
 
+#[deriving(Show)]
 pub struct IrcMessage<'a> {
     pub tags: HashMap<MaybeOwned<'a>, MaybeOwned<'a>>,
     pub prefix: Option<MaybeOwned<'a>>,
@@ -25,9 +26,12 @@ impl <'b> IrcMessage<'b> {
         }
     }
 
+    /// Parse a message from a string to an owned `IrcMessage`.
     pub fn parse_owned<'a>(s: &'a str) -> Result<IrcMessage<'static>, ()> {
         return parse_owned(s);
     }
+    /// Parse a message from a string to an `IrcMessage` that still refers
+    /// to the original `str`.  Useful for minimizing allocations.
     pub fn parse_slice<'a>(s: &'a str) -> Result<IrcMessage<'a>, ()> {
         return parse_slice(s);
     }

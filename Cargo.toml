@@ -6,4 +6,3 @@ version = "0.0.0-alpha"
 [[lib]]
 name = "irc_message"
 path = "./src/lib.rs"
-
