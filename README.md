@@ -3,6 +3,8 @@ irc-message
 
 irc-message is an IRC message parsing library for rust.
 
+## Example
+
 ```
 extern crate irc_message;
 
@@ -14,6 +16,8 @@ fn main() {
     println!("{}", parsed);
 }
 ```
+
+### Result
 
 ```
 Ok(
