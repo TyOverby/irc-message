@@ -24,6 +24,13 @@ impl <'b> IrcMessage<'b> {
             params: Vec::new()
         }
     }
+
+    pub fn parse_owned<'a>(s: &'a str) -> Result<IrcMessage<'static>, ()> {
+        return parse_owned(s);
+    }
+    pub fn parse_slice<'a>(s: &'a str) -> Result<IrcMessage<'a>, ()> {
+        return parse_slice(s);
+    }
 }
 
 fn next_segment<'a>(line: &'a str) -> (&'a str, &'a str) {
@@ -59,15 +66,15 @@ fn trim_space<'a>(line: &'a str) -> &'a str {
     line.slice_from(p)
 }
 
-pub fn parse_owned<'a>(line: &'a str) -> Result<IrcMessage<'static>, ()> {
+fn parse_owned<'a>(line: &'a str) -> Result<IrcMessage<'static>, ()> {
     parse_into(line, |a| Owned(a.to_string()))
 }
 
-pub fn parse_slice<'a>(line: &'a str) -> Result<IrcMessage<'a>, ()> {
+fn parse_slice<'a>(line: &'a str) -> Result<IrcMessage<'a>, ()> {
     parse_into(line, Slice)
 }
 
-pub fn parse_into<'a, 'b>(line: &'a str, wrap: |a: &'a str| -> MaybeOwned<'b>) -> Result<IrcMessage<'b>, ()> {
+fn parse_into<'a, 'b>(line: &'a str, wrap: |a: &'a str| -> MaybeOwned<'b>) -> Result<IrcMessage<'b>, ()> {
     let mut message = IrcMessage::new_empty();
 
     // TAGS
