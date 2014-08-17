@@ -1,6 +1,8 @@
 irc-message
 ===========
 
+[![Build Status](https://travis-ci.org/TyOverby/irc-message.svg)](https://travis-ci.org/TyOverby/irc-message)
+
 irc-message is an IRC message parsing library for rust.
 
 ## Example
@@ -21,14 +23,14 @@ fn main() {
 
 ```
 Ok(
-  IrcMessage { 
+  IrcMessage {
     tags: {
-      best: super, 
+      best: super,
       single: true
-    }, 
-    prefix: Some(test!me@test.ing), 
-    command: Some(FOO), 
-    params: [bar, baz, quux, This is a test] 
+    },
+    prefix: Some(test!me@test.ing),
+    command: Some(FOO),
+    params: [bar, baz, quux, This is a test]
   }
 )
 ```
