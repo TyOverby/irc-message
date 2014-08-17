@@ -163,3 +163,8 @@ fn read_intro_logs_2() {
 fn read_long_logs_1() {
     parse_file("./examples/long.txt");
 }
+
+#[test]
+fn read_long_logs_2() {
+    parse_file("./examples/long2.txt");
+}

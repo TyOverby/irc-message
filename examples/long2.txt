@@ -1,0 +1,125 @@
+:bees.slashnet.org NOTICE AUTH :*** Looking up your hostname...
+:bees.slashnet.org NOTICE AUTH :*** Checking ident...
+:bees.slashnet.org NOTICE AUTH :*** Couldn't resolve your hostname; using your IP address instead
+:bees.slashnet.org NOTICE AUTH :*** No ident response; username prefixed with ~
+PING :F6563BDE
+:bees.slashnet.org 001 tybot :Welcome to the SlashNET IRC Network tybot!~tybot@24.16.208.42
+:bees.slashnet.org 002 tybot :Your host is bees.slashnet.org, running version Unreal3.2.10.3
+:bees.slashnet.org 003 tybot :This server was created Mon Jul 14 2014 at 00:24:57 EDT
+:bees.slashnet.org 004 tybot bees.slashnet.org Unreal3.2.10.3 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:bees.slashnet.org 005 tybot UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=20 CHANLIMIT=#:20 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 MAXTARGETS=20 :are supported by this server
+:bees.slashnet.org 005 tybot WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(ohv)@%+ CHANMODES=beIqa,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=SlashNET CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT STATUSMSG=@%+ :are supported by this server
+:bees.slashnet.org 005 tybot EXCEPTS INVEX CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS :are supported by this server
+:bees.slashnet.org 251 tybot :There are 877 users and 735 invisible on 7 servers
+:bees.slashnet.org 252 tybot 11 :operator(s) online
+:bees.slashnet.org 254 tybot 537 :channels formed
+:bees.slashnet.org 255 tybot :I have 259 clients and 1 servers
+:bees.slashnet.org 265 tybot 259 264 :Current local users 259, max 264
+:bees.slashnet.org 266 tybot 1612 2718 :Current global users 1612, max 2718
+:bees.slashnet.org 375 tybot :- bees.slashnet.org Message of the Day - 
+:bees.slashnet.org 372 tybot :- 14/7/2014 0:43
+:bees.slashnet.org 372 tybot :-                 ___  _            _     _  _  ___  _____
+:bees.slashnet.org 372 tybot :-                / __|| | __ _  ___| |_  | \| || __||_   _|
+:bees.slashnet.org 372 tybot :-                \__ \| |/ _` |(_-<| ' \ | .` || _|   | |
+:bees.slashnet.org 372 tybot :-                |___/|_|\__,_|/__/|_||_||_|\_||___|  |_|
+:bees.slashnet.org 372 tybot :- 
+:bees.slashnet.org 372 tybot :-                         ____  _____ _____ ____  
+:bees.slashnet.org 372 tybot :-                        | __ )| ____| ____/ ___| 
+:bees.slashnet.org 372 tybot :-                        |  _ \|  _| |  _| \___ \ 
+:bees.slashnet.org 372 tybot :-                        | |_) | |___| |___ ___) |
+:bees.slashnet.org 372 tybot :-                        |____/|_____|_____|____/ 
+:bees.slashnet.org 372 tybot :-                             
+:bees.slashnet.org 372 tybot :- 
+:bees.slashnet.org 372 tybot :-                               .' '.            __
+:bees.slashnet.org 372 tybot :-                      .        .   .           (__\_
+:bees.slashnet.org 372 tybot :-                       .         .         . -{{_(|8)
+:bees.slashnet.org 372 tybot :-                         ' .  . ' ' .  . '     (__/`
+:bees.slashnet.org 372 tybot :- 
+:bees.slashnet.org 372 tybot :- 
+:bees.slashnet.org 372 tybot :- 
+:bees.slashnet.org 372 tybot :-                          bees.slashnet.org
+:bees.slashnet.org 372 tybot :-                 Chicago Illinois uplink for SlashNET.org
+:bees.slashnet.org 372 tybot :-                            Ports 6667-6669
+:bees.slashnet.org 372 tybot :-                       IRC over SSL on port 6697
+:bees.slashnet.org 372 tybot :- 
+:bees.slashnet.org 372 tybot :- .--------------------------[SlashNET Rules]----------------------------.
+:bees.slashnet.org 372 tybot :- | o Use of SlashNET is a privilege, not a right.                       |
+:bees.slashnet.org 372 tybot :- | o Harassment of users and/or IRC Operators is not permitted.         |
+:bees.slashnet.org 372 tybot :- | o Harmful bots are not permitted.                                    |
+:bees.slashnet.org 372 tybot :- | o A single user may not have more than 3 simultaneous connections to |
+:bees.slashnet.org 372 tybot :- |   SlashNET (even if from different hostmasks).                       |
+:bees.slashnet.org 372 tybot :- | o No flooding, spamming, or nuking of any kind.                      |
+:bees.slashnet.org 372 tybot :- | o No link-looking scripts or bots.                                   |
+:bees.slashnet.org 372 tybot :- | o Treat users with respect.                                          |
+:bees.slashnet.org 372 tybot :- | o Do not abuse network services.                                     |
+:bees.slashnet.org 372 tybot :- `----------------------------------------------------------------------'
+:bees.slashnet.org 372 tybot :- 
+:bees.slashnet.org 372 tybot :- This server supports hostname cloaking to
+:bees.slashnet.org 372 tybot :- prevent denial-of-service attacks. To activate
+:bees.slashnet.org 372 tybot :- it, type /mode <nickname> +x, where <nickname>
+:bees.slashnet.org 372 tybot :- is your current nickname.
+:bees.slashnet.org 372 tybot :- 
+:bees.slashnet.org 372 tybot :-     Server admin: Zok <zok@slashnet.org>
+:bees.slashnet.org 372 tybot :-             Oper: jac <jac@slashnet.org>
+:bees.slashnet.org 372 tybot :-             Oper: Charlie <charlie@slashnet.org>
+:bees.slashnet.org 372 tybot :- 
+:bees.slashnet.org 372 tybot :- If you have any questions or comments regarding this irc server,
+:bees.slashnet.org 372 tybot :- contact the server administrator(s).
+:bees.slashnet.org 376 tybot :End of /MOTD command.
+:tybot MODE tybot :+x
+:tybot!~tybot@17F06624.22D87FAE.72197B3A.IP JOIN :#pax
+:bees.slashnet.org 332 tybot #pax :<@frellnik> badass badger bear | cpp signups: http://bit.ly/CPPP2014 | IRCWebcast: TBD Movie - Aug 5th | PRIME Badges/Room Share: http://goo.gl/TRZG5L | FTP Upgrade: http://www.gofundme.com/96jgl8 | For an FTP account, PM BigRed | < 24 days till Prime
+:bees.slashnet.org 333 tybot #pax zerzhul 1407269355
+:bees.slashnet.org 353 tybot @ #pax :tybot +dragonshardz +Cyndercyn +Zalera +NickTheNewbie +bubblegumnex +Thermos @BigRed Mobius_ +Tenspeed +zeromyst +kwaizy Guest334242699 +drofone +Snickers +Ty1012 %chaosisorder +Cynd3rCyn +TheM-Away +AMDPhenomX4 +acydlord +Rogue_hunter +SPESSMEHREN MagX +juju-work +Yuritau +TK-42-1 +dirma +adambarg ay1ene +juicyjones %b0wser +MagicSwordKing +Danneh +drobro +Persephone +netcrusher88 +Goofball +Psykus %burnttoast45 
+:bees.slashnet.org 353 tybot @ #pax :+Upthorn +grgemonkey +goalcam +PocketRocket @frellnik +LTAcosta +cely +Elysa +Snifit +dya +Mori-neko @heels mavis +teekay +AGB +Rela +GhostDan +Groove +Djiem +Slicehawk +Wyrm darkinfero|werk +Darc|WORK +aquaone MrsSpook @zerzhul +peetsnack +Britality @BigRed-Lappy %Contre +lirelent_ +lirelent +Decius xnolanx +bacon_work +Gatzby +Van +ky13 +ArcticFox +Sammich +Skarsol +Cakiea SirSquidness +afreak +rhiley +bk +JonXP 
+:bees.slashnet.org 353 tybot @ #pax :nerfle @MoeFwacky +Kyanilis +dustie +LtHummus +Gilles +Gamma +Goatbert +Kristov agrajag EricLeone 
+:bees.slashnet.org 366 tybot #pax :End of /NAMES list.
+:chaosisorder!~chaosisor@cloak-E641F30B.hsd1.or.comcast.net QUIT :Ping timeout
+:chaosisorder!~chaosisor@cloak-E641F30B.hsd1.or.comcast.net JOIN :#pax
+:frellnik!~frellnik@55934508.E063A8A5.B4F4EE80.IP PRIVMSG #pax :the chaosisorder candy van is totally safe guys
+PING :bees.slashnet.org
+:Snifit!~Snifit@cloak-6FC1923E.hsd1.wa.comcast.net PRIVMSG #pax :frellnik you're a weenie
+:chaosisorder!~chaosisor@cloak-E641F30B.hsd1.or.comcast.net NICK :Guest334242702
+:Snifit!~Snifit@cloak-6FC1923E.hsd1.wa.comcast.net PRIVMSG #pax :what's going on nerds
+:bees.slashnet.org 404 tybot #pax :You need voice (+v) (#pax)
+:tybot!~tybot@17F06624.22D87FAE.72197B3A.IP JOIN :#pax_safety
+:bees.slashnet.org 332 tybot #pax_safety :(6:48:10 PM) Snifit: OH LORED
+:bees.slashnet.org 333 tybot #pax_safety Snifit 1406684990
+:bees.slashnet.org 353 tybot @ #pax_safety :tybot drofone b0wser drobro PocketRocket @Snifit %AGB Slicehawk Sammich @MoeFwacky 
+:bees.slashnet.org 366 tybot #pax_safety :End of /NAMES list.
+:Snifit!~Snifit@cloak-6FC1923E.hsd1.wa.comcast.net PRIVMSG #pax_safety :everyone this is my jackass friend, ty
+:drobro!~dro@85D29E55.7C32ACA0.A1458B5D.IP PRIVMSG #pax_safety :Snifit, why do you have a bot of ty 
+:Snifit!~Snifit@cloak-6FC1923E.hsd1.wa.comcast.net PRIVMSG #pax_safety :drobro: different ty
+:drobro!~dro@85D29E55.7C32ACA0.A1458B5D.IP PRIVMSG #pax_safety :well fuck them for taking tys name 
+:drobro!~dro@85D29E55.7C32ACA0.A1458B5D.IP PRIVMSG #pax_safety :so is this a bot or wat 
+:Snifit!~Snifit@cloak-6FC1923E.hsd1.wa.comcast.net PRIVMSG #pax_safety :no
+:Snifit!~Snifit@cloak-6FC1923E.hsd1.wa.comcast.net PRIVMSG #pax_safety :a person
+:Snifit!~Snifit@cloak-6FC1923E.hsd1.wa.comcast.net PRIVMSG #pax_safety :named ty
+:drobro!~dro@85D29E55.7C32ACA0.A1458B5D.IP PRIVMSG #pax_safety :because having a nic wioth bot is silly 
+:Snifit!~Snifit@cloak-6FC1923E.hsd1.wa.comcast.net PRIVMSG #pax_safety :(no relation to ty1012)
+PING :bees.slashnet.org
+:drobro!~dro@85D29E55.7C32ACA0.A1458B5D.IP PRIVMSG #pax :sex 
+PING :bees.slashnet.org
+:AMDPhenomX4!~AMDPhenom@cloak-B02F2948.dhcp.spbg.sc.charter.com QUIT :Ping timeout
+:Djiem!Djiem@cloak-B6189878.mc.videotron.ca PRIVMSG #pax :sex is going on?
+:Djiem!Djiem@cloak-B6189878.mc.videotron.ca PRIVMSG #pax :nice!
+:drobro!~dro@85D29E55.7C32ACA0.A1458B5D.IP PRIVMSG #pax_safety :Snifit, what does this bot do 
+:Snifit!~Snifit@cloak-6FC1923E.hsd1.wa.comcast.net PRIVMSG #pax_safety :he's not a bad
+:Snifit!~Snifit@cloak-6FC1923E.hsd1.wa.comcast.net PRIVMSG #pax_safety :gdi
+:Snifit!~Snifit@cloak-6FC1923E.hsd1.wa.comcast.net PRIVMSG #pax_safety :*bot
+:Snifit!~Snifit@cloak-6FC1923E.hsd1.wa.comcast.net PRIVMSG #pax_safety :he *is* a bad
+:drobro!~dro@85D29E55.7C32ACA0.A1458B5D.IP PRIVMSG #pax_safety :tybot, WHY DID YOU NAME YOUR SELF BOT IF YOUR NOT A BOT 
+:tybot!~tybot@17F06624.22D87FAE.72197B3A.IP NICK :tyandroid
+:Ysterath!~Ys@cloak-6464514C.nycap.res.rr.com JOIN :#pax
+:ChanServ!services@services.slashnet.org MODE #pax +v Ysterath
+:drobro!~dro@85D29E55.7C32ACA0.A1458B5D.IP PRIVMSG #pax_safety :do you have d cups of justice? 
+:MoeFwacky!~MoeFwacky@cloak-E99E805E.hsd1.wa.comcast.net PRIVMSG #pax :Britality, http://i.huffpost.com/gadgets/slideshows/355633/slide_355633_3952516_free.jpg
+:drobro!~dro@85D29E55.7C32ACA0.A1458B5D.IP PRIVMSG #pax_safety :chainsaw hands? 
+:tyandroid!~tybot@17F06624.22D87FAE.72197B3A.IP JOIN :#cocks
+:bees.slashnet.org MODE #cocks +nt 
+:bees.slashnet.org 353 tyandroid = #cocks :@tyandroid 
+:bees.slashnet.org 366 tyandroid #cocks :End of /NAMES list.
+:bees.slashnet.org NOTICE tyandroid :*** You were forced to join #cocks
+:GhostDan!~GhostDan@AA529DA1.7543BF0F.81919EE6.IP NICK :GD-Away
+PING :bees.slashnet.org
+PING :bees.slashnet.org
