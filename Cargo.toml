@@ -1,5 +1,5 @@
 [project]
-name = "irc_message"
+name = "irc-message"
 authors = ["TyOverby <ty@pre-alpha.com>"]
 version = "0.0.0-alpha"
 
