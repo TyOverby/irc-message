@@ -1,5 +1,5 @@
 install:
-    - curl www.rust-lang.org/rustup.sh | sudo bash
+    - curl -s https://static.rust-lang.org/rustup.sh | sudo sh
 script:
     - rustc --version
     - cargo build -v
