@@ -84,8 +84,8 @@ fn parse_into<'a, 'b>(line: &'a str, wrap: |a: &'a str| -> MaybeOwned<'b>) -> Re
     // TAGS
     let line = if line.char_at(0) == '@' {
         let (tags, rest) = next_segment(line.slice_from(1));
-        let mut rawTags = tags.split(';');
-        for tag in rawTags {
+        let mut raw_tags = tags.split(';');
+        for tag in raw_tags {
             println!("{}", tag);
             if tag.contains_char('=') {
                 let mut pair = tag.split('=');

@@ -3,6 +3,6 @@ name = "irc-message"
 authors = ["TyOverby <ty@pre-alpha.com>"]
 version = "0.0.0-alpha"
 
-[[lib]]
+[lib]
 name = "irc_message"
 path = "./src/lib.rs"

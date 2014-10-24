@@ -126,8 +126,8 @@ fn tags_prefix_command_middle_params_trailiing_params() {
         "@best=super;single :test!me@test.ing FOO bar baz quux :This is a test");
     let topic = topic.unwrap();
 
-    assert_eq!(topic.tags.get(&Slice("best")), &Slice("super"));
-    assert_eq!(topic.tags.get(&Slice("single")), &Slice("true"));
+    assert_eq!(topic.tags[Slice("best")], Slice("super"));
+    assert_eq!(topic.tags[Slice("single")], Slice("true"));
     assert_eq!(topic.prefix, Some(Slice("test!me@test.ing")));
     assert_eq!(topic.command, Some(Slice("FOO")));
     assert_eq!(topic.params,
