@@ -1,6 +1,2 @@
-install:
-    - curl -s https://static.rust-lang.org/rustup.sh | sudo sh
-script:
-    - rustc --version
-    - cargo build -v
-    - cargo test -v
+language: rust
+
