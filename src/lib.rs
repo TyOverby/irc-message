@@ -1,19 +1,19 @@
 #![allow(dead_code)]
 #![feature(macro_rules)]
 use std::collections::hash_map::HashMap;
-use std::str::MaybeOwned;
-use std::str::Owned;
-use std::str::Slice;
+use std::borrow::Cow;
 
 #[cfg(test)]
 mod tests;
 
+pub type CowStr<'a> = Cow<'a, String, str>;
+
 #[deriving(Show)]
 pub struct IrcMessage<'a> {
-    pub tags: HashMap<MaybeOwned<'a>, MaybeOwned<'a>>,
-    pub prefix: Option<MaybeOwned<'a>>,
-    pub command: Option<MaybeOwned<'a>>,
-    pub params: Vec<MaybeOwned<'a>>
+    pub tags: HashMap<CowStr<'a>, CowStr<'a>>,
+    pub prefix: Option<CowStr<'a>>,
+    pub command: Option<CowStr<'a>>,
+    pub params: Vec<CowStr<'a>>
 }
 
 impl <'b> IrcMessage<'b> {
@@ -71,14 +71,14 @@ fn trim_space<'a>(line: &'a str) -> &'a str {
 }
 
 fn parse_owned<'a>(line: &'a str) -> Result<IrcMessage<'static>, ()> {
-    parse_into(line, |a| Owned(a.to_string()))
+    parse_into(line, |a| Cow::Owned(a.to_string()))
 }
 
 fn parse_slice<'a>(line: &'a str) -> Result<IrcMessage<'a>, ()> {
-    parse_into(line, Slice)
+    parse_into(line, |a| Cow::Borrowed(a))
 }
 
-fn parse_into<'a, 'b>(line: &'a str, wrap: |a: &'a str| -> MaybeOwned<'b>) -> Result<IrcMessage<'b>, ()> {
+fn parse_into<'a, 'b>(line: &'a str, wrap: |a: &'a str| -> CowStr<'b>) -> Result<IrcMessage<'b>, ()> {
     let mut message = IrcMessage::new_empty();
 
     // TAGS
