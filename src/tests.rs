@@ -15,7 +15,7 @@ fn command_only() {
 fn prefix_command() {
     let topic = IrcMessage::parse_slice(":test FOO").unwrap();
 
-    println!("topic: {}", topic.prefix);
+    println!("topic: {:?}", topic.prefix);
 
     assert_eq!(topic.tags.len(), 0);
     assert_eq!(topic.prefix, Some(Borrowed("test")));
@@ -27,7 +27,7 @@ fn prefix_command() {
 fn prefix_command_trailing_space() {
     let topic = IrcMessage::parse_slice(":test FOO  ").unwrap();
 
-    println!("topic: {}", topic.prefix);
+    println!("topic: {:?}", topic.prefix);
 
     assert_eq!(topic.tags.len(), 0);
     assert_eq!(topic.prefix, Some(Borrowed("test")));

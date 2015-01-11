@@ -1,19 +1,27 @@
 #![allow(dead_code)]
-#![feature(macro_rules)]
 use std::collections::hash_map::HashMap;
 use std::borrow::Cow;
+use std::fmt::{Show, Formatter, Error};
 
 #[cfg(test)]
 mod tests;
 
 pub type CowStr<'a> = Cow<'a, String, str>;
 
-#[deriving(Show)]
 pub struct IrcMessage<'a> {
     pub tags: HashMap<CowStr<'a>, CowStr<'a>>,
     pub prefix: Option<CowStr<'a>>,
     pub command: Option<CowStr<'a>>,
     pub params: Vec<CowStr<'a>>
+}
+
+impl <'a> Show for IrcMessage<'a> {
+    fn fmt(&self, f: &mut Formatter) -> Result<(), Error> {
+           self.tags.fmt(f).and_then(
+        |()| self.prefix.fmt(f)).and_then(
+        |()| self.command.fmt(f)).and_then(
+        |()| self.params.fmt(f))
+    }
 }
 
 impl <'b> IrcMessage<'b> {
@@ -30,6 +38,7 @@ impl <'b> IrcMessage<'b> {
     pub fn parse_owned<'a>(s: &'a str) -> Result<IrcMessage<'static>, ()> {
         return parse_owned(s);
     }
+
     /// Parse a message from a string to an `IrcMessage` that still refers
     /// to the original `str`.  Useful for minimizing allocations.
     pub fn parse_slice<'a>(s: &'a str) -> Result<IrcMessage<'a>, ()> {
@@ -78,7 +87,8 @@ fn parse_slice<'a>(line: &'a str) -> Result<IrcMessage<'a>, ()> {
     parse_into(line, |a| Cow::Borrowed(a))
 }
 
-fn parse_into<'a, 'b>(line: &'a str, wrap: |a: &'a str| -> CowStr<'b>) -> Result<IrcMessage<'b>, ()> {
+fn parse_into<'a, 'b, F>(line: &'a str, wrap: F) -> Result<IrcMessage<'b>, ()>
+where F: Fn(&'a str) -> CowStr<'b> {
     let mut message = IrcMessage::new_empty();
 
     // TAGS
