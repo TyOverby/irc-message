@@ -43,7 +43,7 @@ fn next_segment<'a>(line: &'a str) -> (&'a str, &'a str) {
             if line.len() == 0 {
                 return (line, line);
             }
-            let segment = line.slice_to(n);
+            let segment = &line[..n];
 
             let mut p = n;
 
@@ -51,7 +51,7 @@ fn next_segment<'a>(line: &'a str) -> (&'a str, &'a str) {
                 p += 1;
             }
 
-            (segment, line.slice_from(p))
+            (segment, &line[p..])
         },
         None => (line, "")
     }
@@ -67,7 +67,7 @@ fn trim_space<'a>(line: &'a str) -> &'a str {
         p += 1;
     }
 
-    line.slice_from(p)
+    &line[p..]
 }
 
 fn parse_owned<'a>(line: &'a str) -> Result<IrcMessage<'static>, ()> {
@@ -84,7 +84,7 @@ where F: Fn(&'a str) -> CowString<'b> {
 
     // TAGS
     let line = if line.char_at(0) == '@' {
-        let (tags, rest) = next_segment(line.slice_from(1));
+        let (tags, rest) = next_segment(&line[1..]);
         let mut raw_tags = tags.split(';');
         for tag in raw_tags {
             println!("{}", tag);
@@ -102,7 +102,7 @@ where F: Fn(&'a str) -> CowString<'b> {
 
     // PREFIX
     let line = if line.char_at(0) == ':' {
-        let (prefix, rest) = next_segment(line.slice_from(1));
+        let (prefix, rest) = next_segment(&line[1..]);
         message.prefix = Some(wrap(prefix));
         rest
     } else {
@@ -122,7 +122,7 @@ where F: Fn(&'a str) -> CowString<'b> {
                 break;
             }
             (_, _) if rest.char_at(0) == ':' => {
-                message.params.push(wrap(rest.slice_from(1)));
+                message.params.push(wrap(&rest[1..]));
                 break;
             }
             (last, "") => {
