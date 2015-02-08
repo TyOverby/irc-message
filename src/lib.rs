@@ -1,18 +1,17 @@
 #![allow(dead_code)]
 use std::collections::hash_map::HashMap;
 use std::borrow::Cow;
+use std::string::CowString;
 
 #[cfg(test)]
 mod tests;
 
-pub type CowStr<'a> = Cow<'a, String, str>;
-
 #[derive(Debug)]
 pub struct IrcMessage<'a> {
-    pub tags: HashMap<CowStr<'a>, CowStr<'a>>,
-    pub prefix: Option<CowStr<'a>>,
-    pub command: Option<CowStr<'a>>,
-    pub params: Vec<CowStr<'a>>
+    pub tags: HashMap<CowString<'a>, CowString<'a>>,
+    pub prefix: Option<CowString<'a>>,
+    pub command: Option<CowString<'a>>,
+    pub params: Vec<CowString<'a>>
 }
 
 impl <'b> IrcMessage<'b> {
@@ -79,7 +78,7 @@ fn parse_slice<'a>(line: &'a str) -> Result<IrcMessage<'a>, ()> {
 }
 
 fn parse_into<'a, 'b, F>(line: &'a str, wrap: F) -> Result<IrcMessage<'b>, ()>
-where F: Fn(&'a str) -> CowStr<'b> {
+where F: Fn(&'a str) -> CowString<'b> {
     let mut message = IrcMessage::new_empty();
 
     // TAGS
