@@ -1,3 +1,4 @@
+#![feature(core, collections)]
 #![allow(dead_code)]
 use std::collections::hash_map::HashMap;
 use std::borrow::Cow;
