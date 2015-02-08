@@ -85,7 +85,7 @@ where F: Fn(&'a str) -> CowString<'b> {
     // TAGS
     let line = if line.char_at(0) == '@' {
         let (tags, rest) = next_segment(&line[1..]);
-        let mut raw_tags = tags.split(';');
+        let raw_tags = tags.split(';');
         for tag in raw_tags {
             println!("{}", tag);
             if tag.contains_char('=') {
