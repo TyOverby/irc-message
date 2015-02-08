@@ -1,27 +1,18 @@
 #![allow(dead_code)]
 use std::collections::hash_map::HashMap;
 use std::borrow::Cow;
-use std::fmt::{Show, Formatter, Error};
 
 #[cfg(test)]
 mod tests;
 
 pub type CowStr<'a> = Cow<'a, String, str>;
 
+#[derive(Debug)]
 pub struct IrcMessage<'a> {
     pub tags: HashMap<CowStr<'a>, CowStr<'a>>,
     pub prefix: Option<CowStr<'a>>,
     pub command: Option<CowStr<'a>>,
     pub params: Vec<CowStr<'a>>
-}
-
-impl <'a> Show for IrcMessage<'a> {
-    fn fmt(&self, f: &mut Formatter) -> Result<(), Error> {
-           self.tags.fmt(f).and_then(
-        |()| self.prefix.fmt(f)).and_then(
-        |()| self.command.fmt(f)).and_then(
-        |()| self.params.fmt(f))
-    }
 }
 
 impl <'b> IrcMessage<'b> {
