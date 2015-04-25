@@ -143,7 +143,13 @@ fn parse_file(filepath: &str) {
     let file = BufReader::new(file);
     for line in file.lines() {
         let line = line.unwrap();
-        assert!(IrcMessage::parse_ref(&line[..]).is_some());
+        let mut parsed = IrcMessage::parse_ref(line.trim()).unwrap();
+        let back = format!("{}", parsed);
+        let mut reparsed = IrcMessage::parse_ref(&back).unwrap();
+
+        parsed.raw = "";
+        reparsed.raw = "";
+        assert_eq!(parsed, reparsed);
     }
 }
 

@@ -1,5 +1,8 @@
 use std::collections::hash_map::HashMap;
 use std::hash::Hash;
+use std::convert::AsRef;
+use std::fmt::{Display, Formatter};
+use std::fmt::Result as FmtResult;
 
 #[cfg(test)]
 mod tests;
@@ -13,23 +16,80 @@ macro_rules! try_o {
     }
 }
 
-#[derive(Debug)]
-pub struct IrcMessage<T: Eq + Hash> {
+#[derive(Debug, PartialEq, Eq)]
+pub struct IrcMessage<T: Eq + Hash + AsRef<str>> {
+    pub raw: T,
     pub tags: HashMap<T, T>,
     pub prefix: Option<T>,
     pub command: Option<T>,
     pub params: Vec<T>
 }
 
+impl <T: Eq + Hash + AsRef<str>> Display for IrcMessage<T> {
+    fn fmt(&self, fmt: &mut Formatter) -> FmtResult {
+        if !self.tags.is_empty() {
+            try!(fmt.write_str("@"));
+            for (k, v) in self.tags.iter() {
+                if v.as_ref() == "true" {
+                    try!(fmt.write_str(k.as_ref()));
+                    try!(fmt.write_str(";"));
+                } else {
+                    try!(fmt.write_str(k.as_ref()));
+                    try!(fmt.write_str("="));
+                    try!(fmt.write_str(v.as_ref()));
+                    try!(fmt.write_str(";"));
+                }
+            }
+
+            if self.prefix.is_some() || self.command.is_some() || !self.params.is_empty() {
+                try!(fmt.write_str(" "));
+            }
+        }
+
+        if let Some(prefix) = self.prefix.as_ref() {
+            try!(fmt.write_str(":"));
+            try!(fmt.write_str(prefix.as_ref()));
+
+            if self.command.is_some() || !self.params.is_empty() {
+                try!(fmt.write_str(" "));
+            }
+        }
+
+        if let Some(command) = self.command.as_ref() {
+            try!(fmt.write_str(command.as_ref()));
+            if !self.params.is_empty() {
+                try!(fmt.write_str(" "));
+            }
+        }
+
+        let length = self.params.len();
+        for (i, param) in self.params.iter().enumerate() {
+            if param.as_ref().contains(' ') ||
+               (param.as_ref().chars().nth(0) == Some(':') && i == length - 1) {
+                   try!(fmt.write_str(":"));
+                   try!(fmt.write_str(param.as_ref()));
+                   break;
+            } else {
+                try!(fmt.write_str(param.as_ref()));
+            }
+
+            if i != length - 1 {
+                try!(fmt.write_str(" "));
+            }
+        }
+        Ok(())
+    }
+}
+
 impl IrcMessage<String> {
-    pub fn parse_own(input: &str) -> Option<IrcMessage<String>> {
-        parse_owned(input)
+    pub fn parse_own(line: &str) -> Option<IrcMessage<String>> {
+        parse_into(line, |a| a.to_string())
     }
 }
 
 impl <'a> IrcMessage<&'a str> {
-    pub fn parse_ref(input: &'a str) -> Option<IrcMessage<&'a str>> {
-        parse_slice(input)
+    pub fn parse_ref(line: &'a str) -> Option<IrcMessage<&'a str>> {
+        parse_into(line, |a| a)
     }
 }
 
@@ -45,17 +105,10 @@ fn next_segment(line: &str) -> Option<(&str, &str)> {
     }
 }
 
-fn parse_owned<'a>(line: &'a str) -> Option<IrcMessage<String>> {
-    parse_into(line, |a| a.to_string())
-}
-
-fn parse_slice<'a>(line: &'a str) -> Option<IrcMessage<&'a str>> {
-    parse_into(line, |a| a)
-}
-
-fn parse_into<'a, T: Eq + Hash, F>(line: &'a str, wrap: F) -> Option<IrcMessage<T>>
+fn parse_into<'a, T: Eq + Hash + AsRef<str>, F>(line: &'a str, wrap: F) -> Option<IrcMessage<T>>
 where F: Fn(&'a str) -> T {
     let mut message = IrcMessage {
+        raw: wrap(line),
         tags: HashMap::new(),
         prefix: None,
         command: None,
@@ -88,11 +141,6 @@ where F: Fn(&'a str) -> T {
     } else {
         line
     };
-
-    // COMMAND
-    /*let (command, line) = try_o!(next_segment(line));
-    message.command = Some(wrap(command));
-    */
 
     let line = match next_segment(line) {
         None if line.len() > 0 => {
