@@ -1,19 +1,28 @@
 #![allow(dead_code)]
 #![feature(macro_rules)]
 use std::collections::hash_map::HashMap;
-use std::str::MaybeOwned;
-use std::str::Owned;
-use std::str::Slice;
+use std::borrow::Cow;
 
 #[cfg(test)]
 mod tests;
 
-#[deriving(Show)]
+pub type StrCow<'a> = Cow<'a, String, str>;
+
+macro_rules! try_o {
+    (a) => {
+        (match a {
+            Some(x) => x,
+            None => return None
+        })
+    }
+}
+
+#[derive(Show)]
 pub struct IrcMessage<'a> {
-    pub tags: HashMap<MaybeOwned<'a>, MaybeOwned<'a>>,
-    pub prefix: Option<MaybeOwned<'a>>,
-    pub command: Option<MaybeOwned<'a>>,
-    pub params: Vec<MaybeOwned<'a>>
+    pub tags: HashMap<StrCow<'a>, StrCow<'a>>,
+    pub prefix: Option<StrCow<'a>>,
+    pub command: Option<StrCow<'a>>,
+    pub params: Vec<StrCow<'a>>
 }
 
 impl <'b> IrcMessage<'b> {
@@ -32,12 +41,12 @@ impl <'b> IrcMessage<'b> {
     }
     /// Parse a message from a string to an `IrcMessage` that still refers
     /// to the original `str`.  Useful for minimizing allocations.
-    pub fn parse_slice<'a>(s: &'a str) -> Result<IrcMessage<'a>, ()> {
-        return parse_slice(s);
+    pub fn parse_borrowed<'a>(s: &'a str) -> Result<IrcMessage<'a>, ()> {
+        return parse_borrowed(s);
     }
 }
 
-fn next_segment<'a>(line: &'a str) -> (&'a str, &'a str) {
+fn next_segment<'a>(line: &'a str) -> Option<(&'a str, &'a str)> {
     match line.find(' ') {
         Some(n) => {
             if line.len() == 0 {
@@ -71,25 +80,26 @@ fn trim_space<'a>(line: &'a str) -> &'a str {
 }
 
 fn parse_owned<'a>(line: &'a str) -> Result<IrcMessage<'static>, ()> {
-    parse_into(line, |a| Owned(a.to_string()))
+    parse_into(line, |a| Cow::Owned(a.to_string()))
 }
 
-fn parse_slice<'a>(line: &'a str) -> Result<IrcMessage<'a>, ()> {
-    parse_into(line, Slice)
+fn parse_borrowed<'a>(line: &'a str) -> Result<IrcMessage<'a>, ()> {
+    parse_into(line, Cow::Borrowed)
 }
 
-fn parse_into<'a, 'b>(line: &'a str, wrap: |a: &'a str| -> MaybeOwned<'b>) -> Result<IrcMessage<'b>, ()> {
+fn parse_into<'a, 'b, F>(line: &'a str, wrap: F) -> Option<IrcMessage<'b>>
+where F: Fn(&'a str) -> StrCow<'b> {
     let mut message = IrcMessage::new_empty();
 
     // TAGS
     let line = if line.char_at(0) == '@' {
-        let (tags, rest) = next_segment(line.slice_from(1));
+        let (tags, rest) = try_o!(next_segment(line.slice_from(1)));
         let mut raw_tags = tags.split(';');
         for tag in raw_tags {
-            println!("{}", tag);
             if tag.contains_char('=') {
                 let mut pair = tag.split('=');
-                message.tags.insert(wrap(pair.next().unwrap()), wrap(pair.next().unwrap()));
+                message.tags.insert(wrap(try_o!(pair.next())),
+                                    wrap(try_o!(pair.next())));
             } else {
                 message.tags.insert(wrap(tag), wrap("true"));
             }
@@ -101,7 +111,7 @@ fn parse_into<'a, 'b>(line: &'a str, wrap: |a: &'a str| -> MaybeOwned<'b>) -> Re
 
     // PREFIX
     let line = if line.char_at(0) == ':' {
-        let (prefix, rest) = next_segment(line.slice_from(1));
+        let (prefix, rest) = try_o!(next_segment(line.slice_from(1)));
         message.prefix = Some(wrap(prefix));
         rest
     } else {
