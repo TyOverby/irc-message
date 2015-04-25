@@ -1,102 +1,77 @@
-#![allow(dead_code)]
-#![feature(macro_rules)]
 use std::collections::hash_map::HashMap;
-use std::borrow::Cow;
+use std::hash::Hash;
 
 #[cfg(test)]
 mod tests;
 
-pub type StrCow<'a> = Cow<'a, String, str>;
-
 macro_rules! try_o {
-    (a) => {
-        (match a {
+    ($a: expr) => {
+        match $a {
             Some(x) => x,
             None => return None
-        })
-    }
-}
-
-#[derive(Show)]
-pub struct IrcMessage<'a> {
-    pub tags: HashMap<StrCow<'a>, StrCow<'a>>,
-    pub prefix: Option<StrCow<'a>>,
-    pub command: Option<StrCow<'a>>,
-    pub params: Vec<StrCow<'a>>
-}
-
-impl <'b> IrcMessage<'b> {
-    pub fn new_empty<'a>() -> IrcMessage<'a> {
-        IrcMessage {
-            tags: HashMap::new(),
-            prefix: None,
-            command: None,
-            params: Vec::new()
         }
     }
+}
 
-    /// Parse a message from a string to an owned `IrcMessage`.
-    pub fn parse_owned<'a>(s: &'a str) -> Result<IrcMessage<'static>, ()> {
-        return parse_owned(s);
-    }
-    /// Parse a message from a string to an `IrcMessage` that still refers
-    /// to the original `str`.  Useful for minimizing allocations.
-    pub fn parse_borrowed<'a>(s: &'a str) -> Result<IrcMessage<'a>, ()> {
-        return parse_borrowed(s);
+#[derive(Debug)]
+pub struct IrcMessage<T: Eq + Hash> {
+    pub tags: HashMap<T, T>,
+    pub prefix: Option<T>,
+    pub command: Option<T>,
+    pub params: Vec<T>
+}
+
+impl IrcMessage<String> {
+    pub fn parse_own(input: &str) -> Option<IrcMessage<String>> {
+        parse_owned(input)
     }
 }
 
-fn next_segment<'a>(line: &'a str) -> Option<(&'a str, &'a str)> {
+impl <'a> IrcMessage<&'a str> {
+    pub fn parse_ref(input: &'a str) -> Option<IrcMessage<&'a str>> {
+        parse_slice(input)
+    }
+}
+
+fn next_segment(line: &str) -> Option<(&str, &str)> {
     match line.find(' ') {
         Some(n) => {
-            if line.len() == 0 {
-                return (line, line);
-            }
-            let segment = line.slice_to(n);
-
-            let mut p = n;
-
-            while line.char_at(p) == ' ' && p < line.len() - 1 {
-                p += 1;
-            }
-
-            (segment, line.slice_from(p))
+            let segment = &line[..n];
+            let rest = &line[n..];
+            let rest = rest.trim_left();
+            Some((segment, rest))
         },
-        None => (line, "")
+        None => None
     }
 }
 
-fn trim_space<'a>(line: &'a str) -> &'a str {
-    if line.len() == 0 {
-        return line;
-    }
-
-    let mut p = 0;
-    while line.char_at(p) == ' ' && p < line.len() - 1 {
-        p += 1;
-    }
-
-    line.slice_from(p)
+fn trim_space(line: &str) -> &str {
+    line.trim_left()
 }
 
-fn parse_owned<'a>(line: &'a str) -> Result<IrcMessage<'static>, ()> {
-    parse_into(line, |a| Cow::Owned(a.to_string()))
+fn parse_owned<'a>(line: &'a str) -> Option<IrcMessage<String>> {
+    parse_into(line, |a| a.to_string())
 }
 
-fn parse_borrowed<'a>(line: &'a str) -> Result<IrcMessage<'a>, ()> {
-    parse_into(line, Cow::Borrowed)
+fn parse_slice<'a>(line: &'a str) -> Option<IrcMessage<&'a str>> {
+    parse_into(line, |a| a)
 }
 
-fn parse_into<'a, 'b, F>(line: &'a str, wrap: F) -> Option<IrcMessage<'b>>
-where F: Fn(&'a str) -> StrCow<'b> {
-    let mut message = IrcMessage::new_empty();
+fn parse_into<'a, T: Eq + Hash, F>(line: &'a str, wrap: F) -> Option<IrcMessage<T>>
+where F: Fn(&'a str) -> T {
+    let mut message = IrcMessage {
+        tags: HashMap::new(),
+        prefix: None,
+        command: None,
+        params: vec![]
+    };
 
     // TAGS
-    let line = if line.char_at(0) == '@' {
-        let (tags, rest) = try_o!(next_segment(line.slice_from(1)));
-        let mut raw_tags = tags.split(';');
+    let line = if try_o!(line.chars().next()) == '@' {
+        let (tags, rest) = try_o!(next_segment(&line[1..]));
+        let raw_tags = tags.split(';');
         for tag in raw_tags {
-            if tag.contains_char('=') {
+            if tag.contains('=') {
                 let mut pair = tag.split('=');
                 message.tags.insert(wrap(try_o!(pair.next())),
                                     wrap(try_o!(pair.next())));
@@ -110,8 +85,8 @@ where F: Fn(&'a str) -> StrCow<'b> {
     };
 
     // PREFIX
-    let line = if line.char_at(0) == ':' {
-        let (prefix, rest) = try_o!(next_segment(line.slice_from(1)));
+    let line = if try_o!(line.chars().next()) == ':' {
+        let (prefix, rest) = try_o!(next_segment(&line[1..]));
         message.prefix = Some(wrap(prefix));
         rest
     } else {
@@ -119,31 +94,46 @@ where F: Fn(&'a str) -> StrCow<'b> {
     };
 
     // COMMAND
-    let (command, line) = next_segment(line);
+    /*let (command, line) = try_o!(next_segment(line));
     message.command = Some(wrap(command));
+    */
+
+    let line = match next_segment(line) {
+        None if line.len() > 0 => {
+            message.command = Some(wrap(line));
+            return Some(message);
+        }
+        None => return None,
+        Some((segment, rest)) => {
+            message.command = Some(wrap(segment));
+            rest
+        }
+    };
 
 
     // PARAMS
-    let mut rest = trim_space(line);
+    let mut rest = line;
     while !rest.is_empty() {
+        if let Some(':') = rest.chars().next() {
+            message.params.push(wrap(&rest[1..]));
+            break;
+        }
+
         match next_segment(rest) {
-            ("", _) => {
+            None => {
+                message.params.push(wrap(rest));
                 break;
             }
-            (_, _) if rest.char_at(0) == ':' => {
-                message.params.push(wrap(rest.slice_from(1)));
-                break;
-            }
-            (last, "") => {
+            Some((last, "")) => {
                 message.params.push(wrap(last));
                 break;
             }
-            (next, tail) => {
+            Some((next, tail)) => {
                 message.params.push(wrap(next));
                 rest = tail;
             }
         }
     }
 
-    return Ok(message);
+    return Some(message);
 }
