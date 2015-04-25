@@ -1,27 +1,17 @@
-#![allow(dead_code)]
+#![feature(core, collections)]
 use std::collections::hash_map::HashMap;
 use std::borrow::Cow;
-use std::fmt::{Show, Formatter, Error};
+use std::string::CowString;
 
 #[cfg(test)]
 mod tests;
 
-pub type CowStr<'a> = Cow<'a, String, str>;
-
+#[derive(Debug)]
 pub struct IrcMessage<'a> {
-    pub tags: HashMap<CowStr<'a>, CowStr<'a>>,
-    pub prefix: Option<CowStr<'a>>,
-    pub command: Option<CowStr<'a>>,
-    pub params: Vec<CowStr<'a>>
-}
-
-impl <'a> Show for IrcMessage<'a> {
-    fn fmt(&self, f: &mut Formatter) -> Result<(), Error> {
-           self.tags.fmt(f).and_then(
-        |()| self.prefix.fmt(f)).and_then(
-        |()| self.command.fmt(f)).and_then(
-        |()| self.params.fmt(f))
-    }
+    pub tags: HashMap<CowString<'a>, CowString<'a>>,
+    pub prefix: Option<CowString<'a>>,
+    pub command: Option<CowString<'a>>,
+    pub params: Vec<CowString<'a>>
 }
 
 impl <'b> IrcMessage<'b> {
@@ -52,7 +42,7 @@ fn next_segment<'a>(line: &'a str) -> (&'a str, &'a str) {
             if line.len() == 0 {
                 return (line, line);
             }
-            let segment = line.slice_to(n);
+            let segment = &line[..n];
 
             let mut p = n;
 
@@ -60,7 +50,7 @@ fn next_segment<'a>(line: &'a str) -> (&'a str, &'a str) {
                 p += 1;
             }
 
-            (segment, line.slice_from(p))
+            (segment, &line[p..])
         },
         None => (line, "")
     }
@@ -76,7 +66,7 @@ fn trim_space<'a>(line: &'a str) -> &'a str {
         p += 1;
     }
 
-    line.slice_from(p)
+    &line[p..]
 }
 
 fn parse_owned<'a>(line: &'a str) -> Result<IrcMessage<'static>, ()> {
@@ -88,13 +78,13 @@ fn parse_slice<'a>(line: &'a str) -> Result<IrcMessage<'a>, ()> {
 }
 
 fn parse_into<'a, 'b, F>(line: &'a str, wrap: F) -> Result<IrcMessage<'b>, ()>
-where F: Fn(&'a str) -> CowStr<'b> {
+where F: Fn(&'a str) -> CowString<'b> {
     let mut message = IrcMessage::new_empty();
 
     // TAGS
     let line = if line.char_at(0) == '@' {
-        let (tags, rest) = next_segment(line.slice_from(1));
-        let mut raw_tags = tags.split(';');
+        let (tags, rest) = next_segment(&line[1..]);
+        let raw_tags = tags.split(';');
         for tag in raw_tags {
             println!("{}", tag);
             if tag.contains_char('=') {
@@ -111,7 +101,7 @@ where F: Fn(&'a str) -> CowStr<'b> {
 
     // PREFIX
     let line = if line.char_at(0) == ':' {
-        let (prefix, rest) = next_segment(line.slice_from(1));
+        let (prefix, rest) = next_segment(&line[1..]);
         message.prefix = Some(wrap(prefix));
         rest
     } else {
@@ -131,7 +121,7 @@ where F: Fn(&'a str) -> CowStr<'b> {
                 break;
             }
             (_, _) if rest.char_at(0) == ':' => {
-                message.params.push(wrap(rest.slice_from(1)));
+                message.params.push(wrap(&rest[1..]));
                 break;
             }
             (last, "") => {
