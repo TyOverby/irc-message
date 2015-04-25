@@ -45,10 +45,6 @@ fn next_segment(line: &str) -> Option<(&str, &str)> {
     }
 }
 
-fn trim_space(line: &str) -> &str {
-    line.trim_left()
-}
-
 fn parse_owned<'a>(line: &'a str) -> Option<IrcMessage<String>> {
     parse_into(line, |a| a.to_string())
 }
