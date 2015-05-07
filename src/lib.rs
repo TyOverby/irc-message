@@ -16,7 +16,7 @@ macro_rules! try_o {
     }
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct IrcMessage<T: Eq + Hash + AsRef<str>> {
     pub raw: T,
     pub tags: HashMap<T, T>,
