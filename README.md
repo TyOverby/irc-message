@@ -25,8 +25,8 @@ fn main() {
 Ok(
   IrcMessage {
     tags: {
-      best: super,
-      single: true
+      best: Some(super),
+      single: None
     },
     prefix: Some(test!me@test.ing),
     command: Some(FOO),
