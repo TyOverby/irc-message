@@ -19,7 +19,7 @@ macro_rules! try_o {
 #[derive(Debug, PartialEq, Eq, Clone)]
 pub struct IrcMessage<T: Eq + Hash + AsRef<str>> {
     pub raw: T,
-    pub tags: HashMap<T, T>,
+    pub tags: HashMap<T, Option<T>>,
     pub prefix: Option<T>,
     pub command: Option<T>,
     pub params: Vec<T>
@@ -30,14 +30,17 @@ impl <T: Eq + Hash + AsRef<str>> Display for IrcMessage<T> {
         if !self.tags.is_empty() {
             try!(fmt.write_str("@"));
             for (k, v) in self.tags.iter() {
-                if v.as_ref() == "true" {
-                    try!(fmt.write_str(k.as_ref()));
-                    try!(fmt.write_str(";"));
-                } else {
-                    try!(fmt.write_str(k.as_ref()));
-                    try!(fmt.write_str("="));
-                    try!(fmt.write_str(v.as_ref()));
-                    try!(fmt.write_str(";"));
+                match v {
+                    &None => {
+                        try!(fmt.write_str(k.as_ref()));
+                        try!(fmt.write_str(";"));
+                    },
+                    &Some(ref val) => {
+                        try!(fmt.write_str(k.as_ref()));
+                        try!(fmt.write_str("="));
+                        try!(fmt.write_str(val.as_ref()));
+                        try!(fmt.write_str(";"));
+                    }
                 }
             }
 
@@ -123,9 +126,9 @@ where F: Fn(&'a str) -> T {
             if tag.contains('=') {
                 let mut pair = tag.split('=');
                 message.tags.insert(wrap(try_o!(pair.next())),
-                                    wrap(try_o!(pair.next())));
+                                    Some(wrap(try_o!(pair.next()))));
             } else {
-                message.tags.insert(wrap(tag), wrap("true"));
+                message.tags.insert(wrap(tag), None);
             }
         }
         rest

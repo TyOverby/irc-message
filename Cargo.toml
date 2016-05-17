@@ -1,7 +1,7 @@
 [project]
 name = "irc_message"
 authors = ["TyOverby <ty@pre-alpha.com>"]
-version = "0.0.4"
+version = "0.0.5"
 
 repository = "https://github.com/TyOverby/irc-message"
 license = "MIT"
