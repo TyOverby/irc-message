@@ -124,8 +124,8 @@ fn tags_prefix_command_middle_params_trailiing_params() {
         "@best=super;single :test!me@test.ing FOO bar baz quux :This is a test")
          .unwrap();
 
-    assert!(topic.tags[("best")] == ("super"));
-    assert!(topic.tags[("single")] == ("true"));
+    assert!(topic.tags[("best")] == Some(("super")));
+    assert!(topic.tags[("single")] == None);
     assert!(topic.prefix == Some(("test!me@test.ing")));
     assert!(topic.command == Some(("FOO")));
     assert!(topic.params ==
