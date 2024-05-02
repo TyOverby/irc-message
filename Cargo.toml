@@ -1,4 +1,4 @@
-[project]
+[package]
 name = "irc_message"
 authors = ["TyOverby <ty@pre-alpha.com>"]
 version = "1.0.0"
